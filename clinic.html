@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EliteCare Medical Clinic</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f7fb;
+    color:#1f2937;
+}
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+}
+
+header h1{
+    color:#2563eb;
+    font-size:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#333;
+    margin-left:25px;
+    font-size:14px;
+    font-weight:500;
+}
+
+.hero{
+    height:100vh;
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    display:flex;
+    align-items:center;
+    padding:0 8%;
+    color:white;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.hero h2{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    margin-bottom:25px;
+    font-size:16px;
+}
+
+.btn{
+    padding:14px 22px;
+    background:white;
+    color:#1e40af;
+    border:none;
+    border-radius:8px;
+    font-weight:600;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.section{
+    padding:90px 8%;
+    text-align:center;
+}
+
+.section h3{
+    font-size:30px;
+    margin-bottom:40px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.05);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.doctor{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:40px;
+    text-align:left;
+}
+
+.doctor img{
+    width:300px;
+    border-radius:20px;
+}
+
+.contact{
+    max-width:600px;
+    margin:auto;
+}
+
+input,textarea{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+button{
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    padding:16px;
+    border-radius:50%;
+    text-decoration:none;
+    color:white;
+    font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>EliteCare Clinic</h1>
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#doctor">Doctor</a>
+        <a href="#contact">Appointment</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Advanced Healthcare With Compassion</h2>
+        <p>Trusted medical care with modern facilities and experienced specialists.</p>
+        <a href="#contact" class="btn">Book Appointment</a>
+    </div>
+</section>
+
+<section class="section" id="services">
+    <h3>Our Services</h3>
+    <div class="grid">
+        <div class="card">
+            <h4>General Consultation</h4>
+            <p>Comprehensive diagnosis and personalized treatment plans.</p>
+        </div>
+        <div class="card">
+            <h4>Diabetes Management</h4>
+            <p>Long-term care and lifestyle management programs.</p>
+        </div>
+        <div class="card">
+            <h4>Health Screening</h4>
+            <p>Advanced diagnostics and preventive care solutions.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="doctor">
+    <h3>Meet Our Specialist</h3>
+    <div class="doctor">
+        <img src="https://via.placeholder.com/300" alt="Doctor">
+        <div>
+            <h4>Dr. Rajesh Kumar</h4>
+            <p>MBBS, MD | 15+ Years Experience</p>
+            <p>Committed to delivering high-quality patient care with a compassionate approach.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <h3>Book an Appointment</h3>
+    <div class="contact">
+        <form id="appointmentForm">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <textarea name="message" rows="4" placeholder="Health Concern"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="responseMsg"></p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 EliteCare Clinic | All Rights Reserved</p>
+</footer>
+
+<a href="https://wa.me/919999999999" class="whatsapp" target="_blank">💬</a>
+
+<script>
+const form = document.getElementById("appointmentForm");
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch("YOUR_GOOGLE_SCRIPT_WEB_APP_URL", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        document.getElementById("responseMsg").innerText = "Appointment request submitted successfully!";
+        form.reset();
+    })
+    .catch(error => {
+        document.getElementById("responseMsg").innerText = "Something went wrong!";
+    });
+});
+</script>
+
+</body>
+</html>
